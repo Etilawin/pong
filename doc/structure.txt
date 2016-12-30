@@ -1,0 +1,53 @@
+menu_prinipal()
+
+	
+
+fct menu_principal:
+	Affiche un menu composé de 5 textes
+	Affiche un curseur unique qui se bouge grâce aux flèches directionelles haut et bas
+	Quitte le menu principal quand on appuie sur entrée en fonction de la position du curseur:
+		si 1 joueur : unJoueur()
+		si 2 joueur : deuxJoueurs()
+		si Difficulté : menu_difficulté()
+		si personnalisation : menu_personnalisation()
+		si quit : quitte le programme
+
+fct unJoueur:
+	Efface l'écran
+	Affiche le terrain 1 joueur
+	Tant que la balle n'est pas rentrée dans le but:
+		On continue le jeu
+		On update la balle (position, vitesse etc...)
+		On vérifie si elle ne rentre dans rien
+		On vérifie que le but n'est pas marqué
+	Demander si rejouer:
+		oui : On rejoue
+		non : menu principal
+
+fct deuxJoueurs:
+	Efface l'écran
+	Affiche le terrain 2 joueurs
+	Affiche les scores
+	Tant qu'aucun des scores n'est supérieur à 10:
+		On continue le jeu
+		On update la balle (position, vitesse etc...)
+		On vérifie si elle ne rentre dans rien
+		Si un but est marqué on update les scores
+	Demander si rejouer:
+		oui : On rejoue
+		non : menu principal
+
+fct menu_difficulté:
+	Efface l'écran
+	Affiche le titre "menu Difficulté"
+	Propose de changer la taille de la barre avec input de type range
+	Propose de changer la vitesse de la balle avec un input de type range
+	Bouton pour retourner au menu
+
+fct menu_personnalisatino:
+	Efface l'écran
+	Affiche le titre "menu Personnalisation"
+	Propose de changer la couleur de la balle
+	Propose de changer la couleur de la barre
+	Propose de changer la couleur du terrain (terrains persos via images?)
+	Bouton pour retourner au menu

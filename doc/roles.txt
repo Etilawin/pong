@@ -1,0 +1,7 @@
+Dana:
+	- 2 joueurs
+	- Sous menu: personnalisation couleur
+Kim:
+	- 1 joueur
+	- Menu
+	- Sous menu: difficulté personnalisé -> vitesse de la balle, taille de la barre

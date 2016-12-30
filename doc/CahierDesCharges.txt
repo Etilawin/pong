@@ -1,0 +1,13 @@
+But de l'application:
+	Pong 1 ou 2 joueurs, avec menu, choix de difficulté personnalisée, avec bonus, et malus. Musique et son du jeu.
+
+Fonctionnalité du programme:
+	- Choix de la difficulté:
+		+ Personnalisation de la taille de la barre, de la vitesse de la balle
+	- Menu personnalisation:
+		+ Personnalisation des couleurs
+	- Son:
+		+ Rebond, gagne le point, gagne la partie
+	- Système de high score 1 joueur:
+		+ Montre les meilleurs scores
+	
