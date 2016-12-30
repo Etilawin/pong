@@ -128,6 +128,7 @@ void un_joueur() {
     s_now = (millis() - milliseconds)/1000;
     m_now = s_now/60;
     textSize(36);
+    fill(TexteR, TexteV, TexteB);
     text(m_now + " : " + s_now%60, 150, 50);
     textSize(20);
     text("Il vous reste " + vies + " vies", 150, 100);

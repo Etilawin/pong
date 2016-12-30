@@ -85,7 +85,9 @@ void personaliser() {
   // Grid
   int rows = 6;
   int cols = 7;
-  int col, row; // Valeur actuelle
+  PVector scl = new PVector(width/cols, height/rows);
+  // scl * k -> avec k la colonne ou la ligne correspondnte
+  PVector[] squares = new PVector[28]; // On suit la trace de tout les carrés
 
   // Titres
   fill(TexteR, TexteV, TexteB);
@@ -96,287 +98,205 @@ void personaliser() {
   stroke(255, 255, 255);
 
   // Couleur rectangle
-  
-  row = height/rows; // Première ligne
 
   //line(0, 160, width, 160); 
   fill(TexteR, TexteV, TexteB);
-  text(" Modifie les rectangles ! ", width/2, row + 10);
-  
-  // Modifie la balle
+  text(" Modifie les rectangles ! ", width/2, scl.y + 10);
 
-  row = (height/rows)*2;
+  // Modifie la balle
 
   fill(TexteR, TexteV, TexteB);
   // line(0, 360, width, 360);
-  text(" Moditife la balle ! ", width/2, row + 10);
-  
-  // Le bakground
+  text(" Moditife la balle ! ", width/2, scl.y*2 + 10);
 
-  row = (height/rows)*3;
+  // Le bakground
 
   // line(0, 560, width, 560);
   fill(TexteR, TexteV, TexteB);
-  text("Modifie le fond ! ", width/2, row + 10);
- 
+  text("Modifie le fond ! ", width/2, scl.y*3 + 10);
+
   // Couleur du texte
 
-  row = (height/rows)*4;
+  fill(TexteR, TexteV, TexteB);
+  text("Modifie la couleur du texte !", width/2, scl.y*4 + 10);
+
+  // Menu
 
   fill(TexteR, TexteV, TexteB);
-  text("Modifie la couleur du texte !", width/2, row + 10);
-  
-  row = (height/rows)*5;
-    
-  fill(TexteR, TexteV, TexteB);
-  text("Appuies sur 'm' pour revenir au menu ! ", width/2, row + 10);
-  
-  rectMode(CENTER);
-  
+  text("Appuies sur 'm' pour revenir au menu ! ", width/2, scl.y*5 + 10);
+
   // On dessine tout les carrés noirs
-  col = 0;
-  for(int i = 1; i < rows-1; i++){
+  for (int i = 1; i < rows-1; i++) {
     fill(0, 0, 0);
-    int midx = ((width/cols)*col + (width/cols)*(col+1)) / 2;
-    int midy = ((height/rows)*i + (height/rows)*(i+1)) / 2;
-    rect(midx, midy, 50, 50);
+    float midx = scl.x/2;
+    float midy = scl.y*i + scl.y/2;
+    rect(midx - 25, midy - 25, 50, 50);
+    squares[i-1] = new PVector(midx - 25, midy - 25);
   }
-  
+
   // les carrés rouge
-  col = 1;
-  for(int i = 1; i < rows-1; i++){
+  for (int i = 1; i < rows-1; i++) {
     fill(255, 0, 0);
-    int midx = ((width/cols)*col + (width/cols)*(col+1)) / 2;
-    int midy = ((height/rows)*i + (height/rows)*(i+1)) / 2;
-    rect(midx, midy, 50, 50);
+    float midx = scl.x + scl.x/2;
+    float midy = scl.y*i + scl.y/2;
+    rect(midx - 25, midy - 25, 50, 50);
+    squares[4 + (i-1)] = new PVector(midx - 25, midy - 25);
   }
-  
+
   // les carrés bleu ciel
-  col = 2;
-  for(int i = 1; i < rows-1; i++){
+  for (int i = 1; i < rows-1; i++) {
     fill(0, 128, 255);
-    int midx = ((width/cols)*col + (width/cols)*(col+1)) / 2;
-    int midy = ((height/rows)*i + (height/rows)*(i+1)) / 2;
-    rect(midx, midy, 50, 50);
+    float midx = scl.x*2 + scl.x/2;
+    float midy = scl.y*i + scl.y/2;
+    rect(midx - 25, midy - 25, 50, 50);
+    squares[8 + (i-1)] = new PVector(midx - 25, midy - 25);
   }
-  
+
   // les carrés vert clair
-  col = 3;
-  for(int i = 1; i < rows-1; i++){
+  for (int i = 1; i < rows-1; i++) {
     fill(128, 255, 0);
-    int midx = ((width/cols)*col + (width/cols)*(col+1)) / 2;
-    int midy = ((height/rows)*i + (height/rows)*(i+1)) / 2;
-    rect(midx, midy, 50, 50);
+    float midx = scl.x*3 + scl.x/2;
+    float midy = scl.y*i + scl.y/2;
+    rect(midx - 25, midy - 25, 50, 50);
+    squares[12 + (i-1)] = new PVector(midx - 25, midy - 25);
   }
-  
+
   // les carrés gris
-  col = 4;
-  for(int i = 1; i < rows-1; i++){
+  for (int i = 1; i < rows-1; i++) {
     fill(128, 128, 128);
-    int midx = ((width/cols)*col + (width/cols)*(col+1)) / 2;
-    int midy = ((height/rows)*i + (height/rows)*(i+1)) / 2;
-    rect(midx, midy, 50, 50);
+    float midx = scl.x*4 + scl.x/2;
+    float midy = scl.y*i + scl.y/2;
+    rect(midx - 25, midy - 25, 50, 50);
+    squares[16 + (i-1)] = new PVector(midx - 25, midy - 25);
   }
 
   // les carrés violets
-  col = 5;
-  for(int i = 1; i < rows-1; i++){
+  for (int i = 1; i < rows-1; i++) {
     fill(64, 0, 128);
-    int midx = ((width/cols)*col + (width/cols)*(col+1)) / 2;
-    int midy = ((height/rows)*i + (height/rows)*(i+1)) / 2;
-    rect(midx, midy, 50, 50);
+    float midx = scl.x*5 + scl.x/2;
+    float midy = scl.y*i + scl.y/2;
+    rect(midx - 25, midy - 25, 50, 50);
+    squares[20 + (i-1)] = new PVector(midx - 25, midy - 25);
   }
 
   // les carrés blancs
-  col = 6;
-  for(int i = 1; i < rows-1; i++){
+  for (int i = 1; i < rows-1; i++) {
     fill(255, 255, 255);
-    int midx = ((width/cols)*col + (width/cols)*(col+1)) / 2;
-    int midy = ((height/rows)*i + (height/rows)*(i+1)) / 2;
-    rect(midx, midy, 50, 50);
+    float midx = scl.x*6 + scl.x/2;
+    float midy = scl.y*i + scl.y/2;
+    rect(midx - 25, midy - 25, 50, 50);
+    squares[24 + (i-1)] = new PVector(midx - 25, midy - 25);
   }
-  //////////////////////////////////////
 
-  //fill(0, 0, 0);
-  //rect(width-(width-20), 450, 50, 50);
-
-  //fill(255, 0, 0);
-  //rect(width-(width/1.5), 450, 50, 50);
-
-  //fill(0, 128, 255);
-  //rect(width-(width/1.2), 450, 50, 50);
-
-  //fill(128, 255, 0);
-  //rect(width-(width/3), 450, 50, 50);
-
-  //fill(128, 128, 128);
-  //rect(width-(width/2), 450, 50, 50);
-
-  //fill(64, 0, 128);
-  //rect(width-(width/6), 450, 50, 50);
-
-
-  //fill(255, 255, 255);
-  //rect(width-70, 450, 50, 50);
-  
-  /////////////////////////////////////////////////
-
-  //fill(0, 0, 0);
-  //rect(width-(width-20), 650, 50, 50);
-
-  //fill(255, 0, 0);
-  //rect(width-(width/1.5), 650, 50, 50);
-
-  //fill(0, 128, 255);
-  //rect(width-(width/1.2), 650, 50, 50);
-
-  //fill(128, 255, 0);
-  //rect(width-(width/3), 650, 50, 50);
-
-  //fill(128, 128, 128);
-  //rect(width-(width/2), 650, 50, 50);
-
-  //fill(64, 0, 128);
-  //rect(width-(width/6), 650, 50, 50);
-
-  //fill(255, 255, 255);
-  //rect(width-70, 650, 50, 50);
-
-  ////////////////////////////////////////////:
-
-  //fill(0, 0, 0);
-  //rect(width-(width-20), 850, 50, 50);
-
-  //fill(255, 0, 0);
-  //rect(width-(width/1.5), 850, 50, 50);
-
-  //fill(0, 128, 255);
-  //rect(width-(width/1.2), 850, 50, 50);
-
-  //fill(128, 255, 0);
-  //rect(width-(width/3), 850, 50, 50);
-
-  //fill(128, 128, 128);
-  //rect(width-(width/2), 850, 50, 50);
-
-  //fill(64, 0, 128);
-  //rect(width-(width/6), 850, 50, 50);
-
-  //fill(255, 255, 255);
-  //rect(width-70, 850, 50, 50);
-
-  int x = mouseX;
-  int y = mouseY;
-
-  if (mousePressed && x<(width-(width-20)+50) && x>(width-(width-20)) && y<300 && y>250) {
+  if (mousePressed && mouseX > squares[0].x && mouseX < squares[0].x + 50 && mouseY > squares[0].y && mouseY < squares[0].y + 50) {
     RectangleR = 0;
-    RectangleV =0;
-    RectangleB=0;
-  } else if (mousePressed && x<(width-(width/1.5)+50) && x>(width-(width/1.5)) && y<300 && y>250) {
+    RectangleV = 0;
+    RectangleB = 0;
+  } else if (mousePressed && mouseX > squares[4].x && mouseX < squares[4].x + 50 && mouseY > squares[4].y && mouseY < squares[4].y + 50) {
     RectangleR = 255;
-    RectangleV =0;
-    RectangleB=0;
-  } else if (mousePressed && x<(width-(width/1.2)+50) && x>(width-(width/1.2)) && y<300 && y>250) {
+    RectangleV = 0;
+    RectangleB = 0;
+  } else if (mousePressed && mouseX > squares[8].x && mouseX < squares[8].x + 50 && mouseY > squares[8].y && mouseY < squares[8].y + 50) {
     RectangleR = 0;
-    RectangleV =128;
+    RectangleV = 128;
     RectangleB=255;
-  } else if (mousePressed && x<(width-(width/3)+50) && x>(width-(width/3)) && y<300 && y>250) {
+  } else if (mousePressed && mouseX > squares[12].x && mouseX < squares[12].x + 50 && mouseY > squares[12].y && mouseY < squares[12].y + 50) {
     RectangleR = 128;
     RectangleV =255;
     RectangleB=0;
-  } else if (mousePressed && x<(width-(width/2)+50) && x>(width-(width/2)) && y<300 && y>250) {
+  } else if (mousePressed && mouseX > squares[16].x && mouseX < squares[16].x + 50 && mouseY > squares[16].y && mouseY < squares[16].y + 50) {
     RectangleR = 128;
     RectangleV =128;
     RectangleB=128;
-  } else if (mousePressed && x<(width-(width/6)+50) && x>(width-(width/6)) && y<300 && y>250) {
+  } else if (mousePressed && mouseX > squares[20].x && mouseX < squares[20].x + 50 && mouseY > squares[20].y && mouseY < squares[20].y + 50) {
     RectangleR = 64;
     RectangleV =0;
     RectangleB=128;
-  } else if (mousePressed && x<((width-70)+50) && x>(width-70) && y<300 && y>250) {
+  } else if (mousePressed && mouseX > squares[24].x && mouseX < squares[24].x + 50 && mouseY > squares[24].y && mouseY < squares[24].y + 50) {
     RectangleR = 255;
     RectangleV =255;
     RectangleB=255;
-  } else if (mousePressed && x<(width-(width-20)+50) && x>(width-(width-20)) && y<500 && y>450) {
+  } else if (mousePressed && mouseX > squares[1].x && mouseX < squares[1].x + 50 && mouseY > squares[1].y && mouseY < squares[1].y + 50) {
     BalleR = 0;
     BalleV =0;
     BalleB=0;
-  } else if (mousePressed && x<(width-(width/1.5)+50) && x>(width-(width/1.5)) && y<500 && y>450) {
+  } else if (mousePressed && mouseX > squares[5].x && mouseX < squares[5].x + 50 && mouseY > squares[5].y && mouseY < squares[5].y + 50) {
     BalleR = 255;
     BalleV =0;
     BalleB=0;
-  } else if (mousePressed && x<(width-(width/1.2)+50) && x>(width-(width/1.2)) && y<500 && y>450) {
+  } else if (mousePressed && mouseX > squares[9].x && mouseX < squares[9].x + 50 && mouseY > squares[9].y && mouseY < squares[9].y + 50) {
     BalleR = 0;
     BalleV =128;
     BalleB=255;
-  } else if (mousePressed && x<(width-(width/3)+50) && x>(width-(width/3)) && y<500 && y>450) {
+  } else if (mousePressed && mouseX > squares[13].x && mouseX < squares[13].x + 50 && mouseY > squares[13].y && mouseY < squares[13].y + 50) {
     BalleR = 128;
     BalleV =255;
     BalleB=0;
-  } else if (mousePressed && x<(width-(width/2)+50) && x>(width-(width/2)) && y<500 && y>450) {
+  } else if (mousePressed && mouseX > squares[17].x && mouseX < squares[17].x + 50 && mouseY > squares[17].y && mouseY < squares[17].y + 50) {
     BalleR = 128;
     BalleV =128;
     BalleB=128;
-  } else if (mousePressed && x<(width-(width/6)+50) && x>(width-(width/6)) && y<500 && y>450) {
+  } else if (mousePressed && mouseX > squares[21].x && mouseX < squares[21].x + 50 && mouseY > squares[21].y && mouseY < squares[21].y + 50) {
     BalleR = 64;
     BalleV =0;
     BalleB=128;
-  } else if (mousePressed && x<((width-70)+50) && x>(width-70) && y<500 && y>450) {
+  } else if (mousePressed && mouseX > squares[25].x && mouseX < squares[25].x + 50 && mouseY > squares[25].y && mouseY < squares[25].y + 50) {
     BalleR = 255;
     BalleV =255;
     BalleB=255;
-  } else if (mousePressed && x<(width-(width-20)+50) && x>(width-(width-20)) && y<700 && y>650) {
+  } else if (mousePressed && mouseX > squares[2].x && mouseX < squares[2].x + 50 && mouseY > squares[2].y && mouseY < squares[2].y + 50) {
     FondR = 0;
     FondV =0;
     FondB=0;
-  } else if (mousePressed && x<(width-(width/1.5)+50) && x>(width-(width/1.5)) && y<700 && y>650) {
+  } else if (mousePressed && mouseX > squares[6].x && mouseX < squares[6].x + 50 && mouseY > squares[6].y && mouseY < squares[6].y + 50) {
     FondR = 255;
     FondV =0;
     FondB=0;
-  } else if (mousePressed && x<(width-(width/1.2)+50) && x>(width-(width/1.2)) && y<700 && y>650) {
+  } else if (mousePressed && mouseX > squares[10].x && mouseX < squares[10].x + 50 && mouseY > squares[10].y && mouseY < squares[10].y + 50) {
     FondR = 0;
     FondV =128;
     FondB=255;
-  } else if (mousePressed && x<(width-(width/3)+50) && x>(width-(width/3)) && y<700 && y>650) {
+  } else if (mousePressed && mouseX > squares[14].x && mouseX < squares[14].x + 50 && mouseY > squares[14].y && mouseY < squares[14].y + 50) {
     FondR = 128;
     FondV =255;
     FondB=0;
-  } else if (mousePressed && x<(width-(width/2)+50) && x>(width-(width/2)) && y<700 && y>650) {
+  } else if (mousePressed && mouseX > squares[18].x && mouseX < squares[18].x + 50 && mouseY > squares[18].y && mouseY < squares[18].y + 50) {
     FondR = 128;
     FondV =128;
     FondB=128;
-  } else if (mousePressed && x<(width-(width/6)+50) && x>(width-(width/6)) && y<700 && y>650) {
+  } else if (mousePressed && mouseX > squares[22].x && mouseX < squares[22].x + 50 && mouseY > squares[22].y && mouseY < squares[22].y + 50) {
     FondR = 64;
     FondV =0;
     FondB=128;
-  } else if (mousePressed && x<((width-70)+50) && x>(width-70) && y<700 && y>650) {
+  } else if (mousePressed && mouseX > squares[26].x && mouseX < squares[26].x + 50 && mouseY > squares[26].y && mouseY < squares[26].y + 50) {
     FondR = 255;
     FondV =255;
     FondB=255;
-  } else if (mousePressed && x<(width-(width-20)+50) && x>(width-(width-20)) && y<900 && y>850) {
+  } else if (mousePressed && mouseX > squares[3].x && mouseX < squares[3].x + 50 && mouseY > squares[3].y && mouseY < squares[3].y + 50) {
     TexteR = 0;
     TexteV =0;
     TexteB=0;
-  } else if (mousePressed && x<(width-(width/1.5)+50) && x>(width-(width/1.5)) && y<900 && y>850) {
+  } else if (mousePressed && mouseX > squares[7].x && mouseX < squares[7].x + 50 && mouseY > squares[7].y && mouseY < squares[7].y + 50) {
     TexteR = 255;
     TexteV =0;
     TexteB=0;
-  } else if (mousePressed && x<(width-(width/1.2)+50) && x>(width-(width/1.2)) && y<900 && y>850) {
+  } else if (mousePressed && mouseX > squares[11].x && mouseX < squares[11].x + 50 && mouseY > squares[11].y && mouseY < squares[11].y + 50) {
     TexteR = 0;
     TexteV =128;
     TexteB=255;
-  } else if (mousePressed && x<(width-(width/3)+50) && x>(width-(width/3)) && y<900 && y>850) {
+  } else if (mousePressed && mouseX > squares[15].x && mouseX < squares[15].x + 50 && mouseY > squares[15].y && mouseY < squares[15].y + 50) {
     TexteR = 128;
     TexteV =255;
     TexteB=0;
-  } else if (mousePressed && x<(width-(width/2)+50) && x>(width-(width/2)) && y<900 && y>850) {
+  } else if (mousePressed && mouseX > squares[19].x && mouseX < squares[19].x + 50 && mouseY > squares[19].y && mouseY < squares[19].y + 50) {
     TexteR = 128;
     TexteV =128;
     TexteB=128;
-  } else if (mousePressed && x<(width-(width/6)+50) && x>(width-(width/6)) && y<900 && y>850) {
+  } else if (mousePressed && mouseX > squares[23].x && mouseX < squares[23].x + 50 && mouseY > squares[23].y && mouseY < squares[23].y + 50) {
     TexteR = 64;
     TexteV =0;
     TexteB=128;
-  } else if (mousePressed && x<((width-70)+50) && x>(width-70) && y<900 && y>850) {
+  } else if (mousePressed && mouseX > squares[27].x && mouseX < squares[27].x + 50 && mouseY > squares[27].y && mouseY < squares[27].y + 50) {
     TexteR = 255;
     TexteV =255;
     TexteB=255;
