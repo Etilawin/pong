@@ -82,6 +82,8 @@ void bounceBall(int y) {
   }
 }
 void personaliser() {
+  rectMode(CORNER);
+  
   // Grid
   int rows = 6;
   int cols = 7;
