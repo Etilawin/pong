@@ -32,7 +32,8 @@ float TexteV = 255; // le vert pour le fond
 float TexteB = 255; // le bleu pour le fond
 
 void setup() {
-  frameRate(60);
+  
+  // Son
   minim = new Minim(this);
   Fond = minim.loadFile("Fond.mp3");
   Bravo = minim.loadFile("Bravo.mp3");
@@ -49,45 +50,53 @@ void setup() {
   Fond.play();
   Fond.rewind();
   Fond.loop();
+  // Fin son
+  
   fullScreen(); // On fullscreen c'est plus beau
-  relativeBarSize = realBarSize = height/8;
-  realSpeed = relativeSpeed = 5;
-  font = loadFont("StarAvenue-48.vlw");
-  menuX = width/2 - 200;
+  relativeBarSize = realBarSize = height/8; // Taille de la barre
+  realSpeed = relativeSpeed = 5; // Vitesse de la balle
+  font = loadFont("StarAvenue-48.vlw"); // Police d'écriture
+  menuX = width/2 - 200; // Abscisse du menu
   ball = new Ball(menuX - 45, 100, 1, 0, 5); // Nouvelle balle pour le menu
-  speedBox = new Box(width/2 - 200, 500, 20, 20, width/2 - 200, width/2 + 200);
+  speedBox = new Box(width/2 - 200, 500, 20, 20, width/2 - 200, width/2 + 200); // Box pour difficulty_menu
   sizeBox = new Box(width/2, 300, 20, 20, width/2 - 200, width/2 + 200); // Box pour difficulty_menu
   state = "menu"; // On commence par afficher le menu
   ellipseMode(RADIUS); //Met le rayon du cercle au lieu du diamètre
 }
 
 void writeText(int x, int y, String text) {
+  // Plus rapide pour afficher le texte à l'écran
+  // Affiche le texte à la position x, y avec une taille de 32
   textFont(font, 32);
   textAlign(LEFT, TOP);
   text(text, x, y);
 }
 
 void draw() {
-  // On dessine
+  // Fond de couleur
   background(FondR, FondV, FondB);
-  fill(0, 0, 255);
 
   switch (state)
   {
   case "menu":
+    // On affiche le menu
     menu();
     break;
   case "difficulty":
+    // On affiche le menu difficulté
     difficulty_menu();
     break;
   case "personaliser":
+    // On affiche le menu personnaliser
     personaliser();
     break;
   case "deux_joueurs":
+    // On affiche le jeu deux joueurs
     Fond.play();
     deux_joueurs();
     break;
   case "un_joueur":
+    // On affiche le jeu un joueur
     Fond.play();
     un_joueur();
     break;
@@ -97,7 +106,7 @@ void draw() {
 void stop() {
   Fond.close();
   Bravo.close();
-  // // rebond.close();
+  // rebond.close();
   Ecran.close();
   minim.stop();
   super.stop();

@@ -1,10 +1,8 @@
 class Ball {
-  float x;
-  float y;
-  float y_speed;
-  float x_speed;
-  float R, G, B;
-  float rad;
+  float x, y; // Position
+  float y_speed, x_speed; // Vitesse x, y
+  float R, G, B; // Couleur R, G, B
+  float rad; // rayon
 
   // Constructeur
   Ball(float temp_x, float temp_y, float x_temp_speed, float y_temp_speed, float temp_rad) {
@@ -17,13 +15,13 @@ class Ball {
   }
 
   void update() {
+    // Met à jour la balle
     if (x >= width || x <= 0) {
-      x_speed = -x_speed;
-      // // rebond2.play();
+      x_speed *= -1; // On renvoit si nécessaire
     } else if (y <= rad || y >= height - rad) {
-      y_speed = -y_speed;
-      // // rebond2.play();
+      y_speed *= -1; // On renvoit si nécessaire
     }
+    // On met à jour
     x += x_speed;
     y += y_speed;
   }
@@ -48,16 +46,15 @@ class Bar {
   }
 
   void show() {
+    // On dessine
     rectMode(CORNER);
     rect(pos.x, pos.y, dim.x, dim.y);
   }
 }
 
 class Box {
-  float x;
-  float y;
-  float w;
-  float h;
+  float x, y; // Position x et y
+  float w, h; // Hauteur et largeur
   boolean locked;
   float max_x, min_x, middle;
 
@@ -74,7 +71,7 @@ class Box {
   }
   
   void isMouseOver(){
-    // Don't forget about rectMode(CENTER)
+    // On est bien en rectMode(CENTER)
     if((mouseX >= x - w/2 && mouseX <= x + w/2) &&
        (mouseY >= y - h/2 && mouseY <= y + h/2)){
       locked = true; // Si la souris est dessus on verrouille la box
@@ -82,6 +79,7 @@ class Box {
   }
   
   void update(){
+    // Mettre à jour
     if(locked && 
        mouseX > min_x &&
        mouseX < max_x){

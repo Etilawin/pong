@@ -33,6 +33,7 @@ void keyPressed() {
         Joueur1Score = 0;
         Joueur2Score = 0;
       } else if (key == 'm') {
+        // On retourne au menu
         init = false;
         state = "menu";
         inite = false;
@@ -70,6 +71,7 @@ void keyPressed() {
   } else if (state == "un_joueur") {
     if (EcranPrincipal_1) {
       if (key == ' ') {
+        // Si on appuie sur espace et qu'on est sur l'écran d'accueil, on lance
         EcranPrincipal_1 = false;
         Jouer_1 = true;
       } else if (key == 'm') {
@@ -96,11 +98,12 @@ void keyPressed() {
     }
   } else if (state == "difficulty") {
     if (key == 'm') {
+      // formule de la forme origine + position de la box par rapport au milieu
       float max_barSize = height/8 + ((sizeBox.max_x) - sizeBox.middle);
       float min_barSize = height/8 + ((sizeBox.min_x) - sizeBox.middle);
+      // Map permet de restreindre entre deux valeurs
       realBarSize = map(relativeBarSize, min_barSize, max_barSize, 1, height/2);
       realBarSize = int(realBarSize);
-      println(realBarSize);
       state = "menu";
     }
   }
